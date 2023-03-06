@@ -11,15 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->string('postal_code');
+            $table->string('ps');
+            $table->string('district');
+            $table->string('division');
+        });
+
+        Schema::create('users', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone')->nullable()->unique();
+            $table->string('photo')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('address_id')->nullable()->constrained('addresses')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -27,6 +37,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', function(Blueprint $table){
+            $table->dropForeign(['address_id']);
+            $table->dropColumn('address_id');
+        });
+        Schema::dropIfExists('addresses');
         Schema::dropIfExists('users');
     }
 };
