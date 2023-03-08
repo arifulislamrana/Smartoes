@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('division_id')->constrained('divisions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('division_id')->constrained('divisions')->onUpdate('    cascade')->onDelete('cascade');
         });
 
         Schema::create('police_stations', function (Blueprint $table) {

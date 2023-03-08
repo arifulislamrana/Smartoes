@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Providers\ageCalculate;
+use App\Test;
 use Illuminate\Support\Facades\Route;
 
 /*
