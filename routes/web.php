@@ -1,8 +1,6 @@
 <?php
 
-
-use App\Providers\ageCalculate;
-use App\Test;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('front.index');
 });
+
+Route::get('/test', [Controller::class, 'test']);
