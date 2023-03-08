@@ -18,4 +18,3 @@ Route::get('/', function () {
     return view('front.index');
 });
 
-Route::get('/test', [Controller::class, 'test']);
