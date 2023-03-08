@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class GeoLocationSeeder extends Seeder
 {
@@ -12,23 +13,48 @@ class GeoLocationSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = json_decode(file_get_contents('BdGeoLocation.json'), true);
+        $data = json_decode(file_get_contents(public_path('BdGeoLocation.json'), true));
+
+        $i = 1;
+        $j = 1;
+        $k = 1;
+        $l = 1;
 
         foreach ($data as $div => $dis)
         {
-            //dd($dis);
-            foreach ($dis as $dis => $thana)
+            DB::table('divisions')->insert([
+                'name' => $div,
+            ]);
+
+            foreach ($dis as $dis => $thanas)
             {
-                //dd($thana);
-                foreach ($thana as $codes)
+                DB::table('districts')->insert([
+                    'name' => $dis,
+                    'division_id' => $i,
+                ]);
+
+                foreach ($thanas as $thana => $codes)
                 {
-                    //dd($codes);
+                    DB::table('police_stations')->insert([
+                        'name' => $thana,
+                        'district_id' => $j,
+                    ]);
+
                     foreach ($codes as $code)
                     {
-                        //echo $code." ";
+                        DB::table('post_codes')->insert([
+                            'code' => $code,
+                            'police_station_id' => $k,
+                        ]);
                     }
+
+                    $k++;
                 }
+
+                $j++;
             }
+
+            $i++;
         }
 
     }
