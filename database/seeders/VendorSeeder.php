@@ -12,6 +12,10 @@ class VendorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Vendor::factory()->create([
+            'name' => 'Sajjad Garments',
+            'phone' => '01389762367',
+            'email' => 'test@example.com',
+        ]);
     }
 }
