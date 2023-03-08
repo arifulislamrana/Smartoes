@@ -18,7 +18,6 @@ class GeoLocationSeeder extends Seeder
         $i = 1;
         $j = 1;
         $k = 1;
-        $l = 1;
 
         foreach ($data as $div => $dis)
         {
