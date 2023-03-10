@@ -13,4 +13,9 @@ class Product extends Model
 
     public $incrementing = false;
     public $timestamps = false;
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
