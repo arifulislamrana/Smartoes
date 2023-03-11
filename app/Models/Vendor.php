@@ -15,4 +15,9 @@ class Vendor extends Model
         'name',
         'phone',
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_vendor');
+    }
 }
