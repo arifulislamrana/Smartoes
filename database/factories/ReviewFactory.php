@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,17 @@ class ReviewFactory extends Factory
      */
     public function definition(): array
     {
+        $productsID = Product::pluck('id')->toArray();
+        $comments = [
+            'very good prouct',
+            'Excellent quality',
+            'Not very good',
+            'very bad'
+        ];
+
         return [
-            //
+            'product_id' => $productsID[rand(0, count($productsID)-1)],
+            'comment' => $comments[rand(0, count($comments)-1)],
         ];
     }
 }
