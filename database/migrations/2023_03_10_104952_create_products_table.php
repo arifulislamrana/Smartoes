@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('buying_price');
             $table->boolean('status')->default(true);
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('brand_id')->nullable()->constrained('brands')->onUpdate('cascade')->onDelete('cascade');
             $table->string('code')->unique();
             $table->foreignId('discount_id')->nullable()->constrained('discounts')->onUpdate('cascade')->onDelete('cascade');
             $table->string('thumbnail');
@@ -43,12 +44,6 @@ return new class extends Migration
             $table->foreignId('tag_id')->constrained('tags')->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::create('brand_product', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUuid('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('brand_id')->constrained('brands')->onUpdate('cascade')->onDelete('cascade');
-        });
-
         Schema::create('product_vendor', function (Blueprint $table) {
             $table->id();
             $table->foreignUuid('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
@@ -64,6 +59,7 @@ return new class extends Migration
         Schema::table('products', function(Blueprint $table){
             $table->dropForeign(['category_id']);
             $table->dropForeign(['discount_id']);
+            $table->dropForeign(['brand_id']);
             $table->dropColumn('category_id');
             $table->dropColumn('discount_id');
         });
@@ -71,11 +67,6 @@ return new class extends Migration
         Schema::table('product_vendor', function(Blueprint $table){
             $table->dropForeign(['product_id']);
             $table->dropForeign(['vendor_id']);
-        });
-
-        Schema::table('brand_product', function(Blueprint $table){
-            $table->dropForeign(['product_id']);
-            $table->dropForeign(['brand_id']);
         });
 
         Schema::table('product_size', function(Blueprint $table){
@@ -92,7 +83,6 @@ return new class extends Migration
         Schema::dropIfExists('sizes');
         Schema::dropIfExists('product_tag');
         Schema::dropIfExists('product_size');
-        Schema::dropIfExists('brand_product');
         Schema::dropIfExists('product_vendor');
     }
 };
