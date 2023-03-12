@@ -43,4 +43,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Vendor::class,'product_vendor');
     }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }
