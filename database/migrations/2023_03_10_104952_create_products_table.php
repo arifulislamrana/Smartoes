@@ -60,8 +60,6 @@ return new class extends Migration
             $table->dropForeign(['category_id']);
             $table->dropForeign(['discount_id']);
             $table->dropForeign(['brand_id']);
-            $table->dropColumn('category_id');
-            $table->dropColumn('discount_id');
         });
 
         Schema::table('product_vendor', function(Blueprint $table){
