@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Inventory;
+use App\Models\Product;
+use App\Models\Unit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +23,15 @@ class InventorySeeder extends Seeder
             ]);
         }
 
-        Inventory::factory(10)->create();
+        $productID = Product::pluck('id')->toArray();
+        $unitID = Unit::pluck('id')->toArray();
+
+        for ($i=0; $i < count($productID); $i++) {
+            DB::table('inventories')->insert([
+                'product_id' => $productID[$i],
+                'unit_id' => $unitID[rand(0,count($unitID)-1)],
+                'amount' => rand(10,20),
+            ]);
+        }
     }
 }

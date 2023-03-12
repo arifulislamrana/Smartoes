@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('product_id')->unique()->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('unit_id')->constrained('units')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('amount');
             $table->timestamps();
