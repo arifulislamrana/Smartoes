@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Order extends Model
+class Payment extends Model
 {
     use HasFactory;
 
@@ -15,13 +15,8 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function orderItems()
+    public function order()
     {
-        return $this->hasMany(OrderItem::class);
-    }
-
-    public function payments()
-    {
-        return $this->hasMany(Payment::class);
+        return $this->belongsTo(Order::class);
     }
 }
