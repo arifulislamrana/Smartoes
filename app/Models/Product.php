@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\UUID;
+use App\Models\OrderItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -57,5 +58,10 @@ class Product extends Model
     public function discount()
     {
         return $this->belongsTo(Discount::class);
+    }
+        
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }
