@@ -53,4 +53,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Tag::class, 'product_tag');
     }
+
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
+    }
 }

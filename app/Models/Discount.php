@@ -13,4 +13,9 @@ class Discount extends Model
         'name',
         'amount'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
