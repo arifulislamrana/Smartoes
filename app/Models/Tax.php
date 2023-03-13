@@ -12,9 +12,4 @@ class Tax extends Model
     protected $fillable = [
         'percentage',
     ];
-
-    public function categories()
-    {
-        return $this->hasMany(Category::class);
-    }
 }
