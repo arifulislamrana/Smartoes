@@ -59,9 +59,14 @@ class Product extends Model
     {
         return $this->belongsTo(Discount::class);
     }
-        
+
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function inventory()
+    {
+        return $this->hasOne(Inventory::class);
     }
 }

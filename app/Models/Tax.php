@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class Tax extends Model
 {
     use HasFactory;
 
-    public function inventories()
+    protected $fillable = [
+        'percentage',
+    ];
+
+    public function categories()
     {
-        return $this->hasMany(Inventory::class);
+        return $this->hasMany(Category::class);
     }
 }

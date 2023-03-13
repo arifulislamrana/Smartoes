@@ -30,7 +30,7 @@ class InventorySeeder extends Seeder
             DB::table('inventories')->insert([
                 'product_id' => $productID[$i],
                 'unit_id' => $unitID[rand(0,count($unitID)-1)],
-                'amount' => rand(10,20),
+                'quantity' => rand(10,20),
             ]);
         }
     }

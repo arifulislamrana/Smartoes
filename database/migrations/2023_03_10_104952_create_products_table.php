@@ -20,8 +20,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('selling_price');
-            $table->string('buying_price');
+            $table->decimal('selling_price', 8, 2);
+            $table->decimal('buying_price', 8, 2);
             $table->boolean('status')->default(true);
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('brand_id')->nullable()->constrained('brands')->onUpdate('cascade')->onDelete('cascade');
