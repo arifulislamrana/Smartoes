@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\MailSender\Mailer\InterfaceMailer;
+use App\MailSender\Mailer\Mailer;
 use Illuminate\Support\ServiceProvider;
 use App\Repository\BaseRepository\BaseRepository;
 use App\Repository\UserRepository\UserRepository;
@@ -17,6 +19,7 @@ class SmartoesServiceProvider extends ServiceProvider
     {
         $this->app->bind(IBaseRepository::class, BaseRepository::class);
         $this->app->bind(IUserRepository::class, UserRepository::class);
+        $this->app->bind(InterfaceMailer::class, Mailer::class);
     }
 
     /**
